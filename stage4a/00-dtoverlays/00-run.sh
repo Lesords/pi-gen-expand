@@ -7,7 +7,7 @@ fi
 
 SEEED_DEV_NAME=${IMG_NAME}
 # GIT_MODULE='https://github.com/Seeed-Studio/seeed-linux-dtoverlays.git -b master --depth=1'
-GIT_MODULE='https://github.com/Lesords/seeed-linux-dtoverlays.git -b master --depth=1'
+GIT_MODULE='https://github.com/Lesords/seeed-linux-dtoverlays.git -b feat/exp-R21 --depth=1'
 
 if [ "X$GIT_MODULE" != "X" ]; then
 	MODULE_PATH=/seeed-linux-dtoverlays
