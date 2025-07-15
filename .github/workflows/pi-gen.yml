@@ -158,6 +158,7 @@ jobs:
           username: ${{ inputs.username }}
           password: ${{ inputs.password }}
           hostname: ${{ inputs.dev_name }}
+          increase-runner-disk-size: true
 
       - name: Upload ${{ inputs.dev_name }} image
         id: artifact-upload-step
