@@ -70,12 +70,12 @@ fi
 if [ -d "files" ]; then
     if [ "$SEEED_DEV_NAME" == "reComputer-R2x" ]; then
         log "Begin copy files special for seeed $SEEED_DEV_NAME"
-        chmod +x ./files/r21_board.sh
-        cp ./files/r21_board.sh ${ROOTFS_DIR}/usr/local/bin/
-        cp ./files/r21_board.service ${ROOTFS_DIR}/lib/systemd/system/
+        chmod +x ./files/r21_board_detect.sh
+        cp ./files/r21_board_detect.sh ${ROOTFS_DIR}/usr/local/bin/
+        cp ./files/r21_board_detect.service ${ROOTFS_DIR}/lib/systemd/system/
         on_chroot << EOF
 systemctl daemon-reload
-systemctl enable r21_board.service
+systemctl enable r21_board_detect.service
 EOF
         log "End copy files special for seeed $SEEED_DEV_NAME"
     else
