@@ -181,14 +181,6 @@ jobs:
           name: Raspbian-${{ inputs.dev_name }}-${{ inputs.pi-gen-version }}
           path: ${{ steps.build.outputs.image-path }}
 
-      - name: Compress image using xz
-        run: |
-          # tar -cvJf ${{ steps.build.outputs.image-path }}.tar.xz ${{ steps.build.outputs.image-path }}
-          # xz -T0 -9e ${{ steps.build.outputs.image-path }}
-          echo ${{ steps.create_release.outputs.upload_url }}
-          echo "${{ steps.create_release.outputs.upload_url }}"
-          ls -al
-
       - name: Uploading ${{ inputs.dev_name }} image to release
         id: release-step
         if: ${{ env.UPLOAD_TO_RELEASE == 'true' }}
@@ -208,7 +200,7 @@ jobs:
 
       - name: Setup Python
         uses: actions/setup-python@v2
-        
+
       - name: update README.md
         if: ${{ env.UPLOAD_TO_RELEASE == 'true' }}
         run: | 
@@ -218,7 +210,7 @@ jobs:
            git checkout main
          fi
          git pull
-         echo "## ${{ steps.build.outputs.image-path }} image  ${{ inputs.dev_name }}-${{ inputs.pi-gen-version }} ${{ env.RELEASE_URL }}" 
+         echo "## ${{ steps.build.outputs.image-path }} image  ${{ inputs.dev_name }}-${{ inputs.pi-gen-version }} ${{ env.RELEASE_URL }}"
          python3 update_readme.py ${{ inputs.dev_name }}-${{ inputs.pi-gen-version }} ${{ inputs.username }} ${{ inputs.password }} ${{ inputs.enable-ssh }} "${{ inputs.stage-list }}" ${{ env.RELEASE_URL }}
 
       - name: Commit and push changes
@@ -226,5 +218,5 @@ jobs:
         run: |
           git config --local user.name "GitHub Action"
           git config --local user.email "action@github.com"
-          git commit -a -m 'update ${{ inputs.dev_name }}-${{ inputs.pi-gen-version }} URL'
-          git push 
+          git commit -a -m 'docs: update ${{ inputs.dev_name }}-${{ inputs.pi-gen-version }} URL'
+          git push
