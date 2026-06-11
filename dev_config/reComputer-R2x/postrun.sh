@@ -43,7 +43,7 @@ function get_kernel_version() {
 
 kernelver=$(get_kernel_version)
 
-VERSION=$(apt list hailo-all | grep hailo-all | awk '{print $2}' | cut -d' ' -f1)
+VERSION=$(apt list hailo-all 2>/dev/null | grep hailo-all | awk '{print $2}' | cut -d' ' -f1 | sed 's/\+[0-9].*//')
 git clone https://github.com/hailo-ai/hailort-drivers.git -b v$VERSION hailort-drivers
 cd hailort-drivers/linux/pcie
 
