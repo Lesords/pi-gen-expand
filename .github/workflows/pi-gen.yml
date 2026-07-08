@@ -16,6 +16,7 @@ on:
           - reComputer-R22
           - reComputer-AI-box
           - reComputer-AI-box-cm5
+          - rpi-cm5-inway
           - reTerminal
           - reTerminal-DM
       pi-gen-version:

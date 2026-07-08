@@ -6,7 +6,15 @@ if [[ ${IMG_NAME} == "raspberrypi" ]]; then
 fi
 
 SEEED_DEV_NAME=${IMG_NAME}
-GIT_MODULE='https://github.com/Seeed-Studio/seeed-linux-dtoverlays.git -b master --depth=1'
+
+# rpi-cm* boards (e.g. rpi-cm5-inway) ship their overlays on the
+# reachy_mini branch, which has not been merged to master yet. Other
+# devices keep using master, where their overlays live.
+if [[ "$SEEED_DEV_NAME" == rpi-cm* ]]; then
+	GIT_MODULE='https://github.com/Lesords/seeed-linux-dtoverlays.git -b reachy_mini --depth=1'
+else
+	GIT_MODULE='https://github.com/Seeed-Studio/seeed-linux-dtoverlays.git -b master --depth=1'
+fi
 
 if [ "X$GIT_MODULE" != "X" ]; then
 	MODULE_PATH=/seeed-linux-dtoverlays
